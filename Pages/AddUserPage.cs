@@ -42,13 +42,24 @@ namespace Zakonczenie_tygodnia.Pages
         }
 
         public async Task ClickChceckBox() => await _chceckCompanyWorker.ClickAsync();
-        
-        public async Task SaveBtnClick() => await _saveBtn.ClickAsync();
-        
-        public async Task<bool> isModifiedExist()
-        {         
-          return  await _modifyBtn.IsVisibleAsync();
+
+        public async Task SaveBtnClick()
+        {
+            await _saveBtn.ClickAsync();
+            Thread.Sleep(1000);
+
         }
+   
+        public async Task<bool> isModifiedExist()
+
+        {
+            bool modifyBtnVidible;
+            modifyBtnVidible = await _modifyBtn.IsVisibleAsync();
+            return modifyBtnVidible;
+            //Console.WriteLine("Jestem w sprawdzaniu czy widoczny jest przycisk Modyfikuj: " + modifyBtnVidible);
+
+        }
+
         public async Task <ILocator> isModified() 
         {
             return  _saveBtn;

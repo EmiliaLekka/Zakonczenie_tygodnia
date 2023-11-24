@@ -95,8 +95,9 @@ namespace Zakonczenie_tygodnia.Pages
             await _searchUserLabbel.ClickAsync();
             await _searchUserLabbel.ClearAsync();
             await _searchUserLabbel.FillAsync(username);
-            await _searchIcon.ClickAsync();
-            Thread.Sleep(1000);
+            await _page.RunAndWaitForRequestFinishedAsync(async () =>
+            { await _searchIcon.ClickAsync(); }
+            );
             await _userintable.IsVisibleAsync();
          
         }

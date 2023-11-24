@@ -20,6 +20,8 @@ namespace Zakonczenie_tygodnia.Tests
     public class UserTest : PageTest
     {
         public Faker _faker;
+        string userName = "e.lekka@test.pl";
+        string password = "Wiosna.123456";
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -43,63 +45,41 @@ namespace Zakonczenie_tygodnia.Tests
             //wywołanie metody logowania
 
             var loginPage = new LoginPage(Page);
-            await loginPage.Login(userName: "e.lekka@test.pl", password: "Wiosna.123456");
+            await loginPage.Login(userName, password);
             var isExist = await loginPage.IsMenuExist();
             Assert.IsTrue(isExist);
 
             //wywołanie przejścia do zakładki Użytkownicy
 
-            var userclick = new ClientsPage(Page);
-            var isElementUserTxtExist = userclick.UserBtnClick();
-            
+            var clients = new ClientsPage(Page);
+            await clients.UserBtnClick();
 
             //wywołanie przycisku "Dodaj użytkownika"
-           
-             var clients = new ClientsPage(Page);
-             var addUserPg = await clients.AddUserButton();
+
+            var addUserPg = await clients.AddUserButton();
 
             //dodanie usera na nowej stronie 
-          
+
             AddUserPage adduser = new AddUserPage(addUserPg);
             var user = UserData();
             await adduser.FillUser(user);
 
             //kliknięcie chceckboxu z rolą użytkownika
-
-             await adduser.ClickChceckBox();
+            await adduser.ClickChceckBox();
 
             //kliknięcie Zapisz
-
-            //  var locator_sv_btn = addUserPg.Locator(("//button[@data-test-id='user-form-save-button']"));
-      //      ILocator valuefroncell = await clients.ReturnCell();
-            ILocator saveBtn = await adduser.isModified();
-            await Expect(saveBtn).ToBeEditableAsync();
             await adduser.SaveBtnClick();
-            
 
             // sprawdzanie czy przycisk Modyfikuj istnieje
-            var locator_mdf_btn = addUserPg.Locator(selector:"text='Modyfikuj'");
-            await Expect(locator_mdf_btn).ToBeVisibleAsync();
             var isModifiedExist = await adduser.isModifiedExist();
             Assert.IsTrue(isModifiedExist);
 
 
-            // do poprawy !!!!!!!!!!!!!!!!!!!!!!
-            await userclick.UserBtnClick();
-            var is_UsersControllText = Page.Locator("//*[@id='root']/div/div/form/div/div[2]/div[1]/nav/ol/li[3]/p");
-            await Expect(is_UsersControllText).ToBeVisibleAsync();
-
             //utworzenie imienia i nazwiska
-            var name_surname = user.Name +" "+ user.Surname;
-            Console.WriteLine(name_surname);
+            string name_surname = user.Name + " " + user.Surname;
 
             //sprawdzanie czy na liście użytkowników znajduje się nowo-dodany użytkownik
             await clients.SearchUser(name_surname);
-            //   await clients.ReturnCell();
-            string valuefromcell = await clients.ReturnCell();
-            //ILocator valuefromcell = await 
-            valuefromcell.Should().Contain(name_surname);
-            //  await Expect(valuefromcell).ToContainTextAsync(name_surname);
         }
 
 

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Zakonczenie_tygodnia")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cea022faaa378290600bf3abe8519da648687795")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+977b101acd8ea28c1b6ec39f68b28b1d11116d9f")]
 [assembly: System.Reflection.AssemblyProductAttribute("Zakonczenie_tygodnia")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Zakonczenie_tygodnia")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

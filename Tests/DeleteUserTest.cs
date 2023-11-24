@@ -67,24 +67,15 @@ namespace Zakonczenie_tygodnia.Tests
             await adduser.FillUser(user);
 
             //kliknięcie chceckboxu z rolą użytkownika
-
             await adduser.ClickChceckBox();
 
             //kliknięcie Zapisz
-
              await adduser.SaveBtnClick();
 
-            ////////////////////////////////////////////////////////////////////////////
-
             // sprawdzanie czy przycisk Modyfikuj istnieje
-
-         //   var locator_mdf_btn = addUserPg.Locator(selector: "text='Modyfikuj'");
-            
-        //    await Expect(locator_mdf_btn).ToBeVisibleAsync();
             var isModifiedExist = await adduser.isModifiedExist();
             Assert.IsTrue(isModifiedExist);
 
-            ///////////////////////////////////////////////////////////////////////////
 
             //utworzenie imienia i nazwiska
             string name_surname = user.Name + " " + user.Surname;
