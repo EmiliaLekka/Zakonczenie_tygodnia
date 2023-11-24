@@ -98,7 +98,7 @@ namespace Zakonczenie_tygodnia.Pages
             await _searchIcon.ClickAsync();
             Thread.Sleep(1000);
             await _userintable.IsVisibleAsync();
-          
+         
         }
 
   

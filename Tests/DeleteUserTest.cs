@@ -93,7 +93,7 @@ namespace Zakonczenie_tygodnia.Tests
             await clients.SearchUser(name_surname);
             
             
-            //sprawdzanie czy to, co wyświetla się w komórce zgadza się z imieniem i nazwiskiem nowo-dodanego user
+            //sprawdzanie czy to, co wyświetla się w komórce zgadza się z imieniem i nazwiskiem nowo-dodanego usera
             string valueFromCell = await clients.ReturnCell();
             valueFromCell.Should().Contain(name_surname);
         
